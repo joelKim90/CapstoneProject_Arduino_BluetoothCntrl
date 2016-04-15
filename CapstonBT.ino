@@ -1,6 +1,6 @@
 #include <SoftwareSerial.h>   //Software Serial Port
 #include <Stepper.h>
-#include "DualVNH5019MotorShield.h"
+#include "DualVNH5019MotorShield.h" //custom library for the motor shield
 
 DualVNH5019MotorShield md;
 
@@ -13,13 +13,14 @@ DualVNH5019MotorShield md;
 
 SoftwareSerial blueToothSerial(RxD,TxD);
 
+//assigning the pins
 int stepIN1Pin = 16;
 int stepIN2Pin = 17;
 int stepIN3Pin = 11;
 int stepIN4Pin = 13;
 
-long startTime;
-long elapsedTime;
+//long startTime;
+//long elapsedTime;
 
 int stepsPerRevolution = 2048;
 
@@ -54,7 +55,7 @@ void loop()
             recvChar = blueToothSerial.read();
             Serial.print(recvChar);
             
-            if(recvChar == '1')
+            if(recvChar == '1') // this is low speed
             {
                 
                 blueToothSerial.print("Shoot!");
@@ -86,7 +87,7 @@ void loop()
             }
         
             
-            if(recvChar == '2')
+            if(recvChar == '2') //medium speed
             {
                 blueToothSerial.print("Shoot!");
 
@@ -110,7 +111,7 @@ void loop()
                 delay(1000);
             }
 
-            if(recvChar == '3')
+            if(recvChar == '3') //high speed
             {
                 blueToothSerial.print("Shoot!");
 
